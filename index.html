@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Workshop Fora da Operação · Apresentação</title>
+<meta property="og:title" content="Workshop Fora da Operação · Os 3 primeiros movimentos" />
+<meta property="og:description" content="Financeiro, Estratégico e Vendas. Ao vivo, 2h30." />
+<meta property="og:image" content="assets/slide-01.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+<style>
+/* === DESIGN TOKENS === */
+:root {
+  --red: #dc2626;
+  --red-deep: #991b1b;
+  --red-glow: #ef4444;
+  --cyan: #22d3ee;
+  --black: #0a0a0a;
+  --off: #f5f5f5;
+  --muted: #a3a3a3;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--black); color: var(--off); font-family: 'Inter', sans-serif; }
+.reveal { font-family: 'Inter', sans-serif; background: var(--black); }
+.reveal-viewport { background: var(--black); }
+.reveal .slides { text-align: left; background: var(--black); }
+.reveal .slides section { background: var(--black); }
+.reveal .backgrounds { background: var(--black); }
+.reveal section { padding: 0; height: 100vh; width: 100vw; }
+
+.slide-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+
+.slide-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 45%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.78) 100%);
+  z-index: 1;
+}
+
+.slide-overlay.full {
+  background: linear-gradient(180deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.15) 22%, rgba(10,10,10,0.0) 55%, rgba(10,10,10,0.2) 78%, rgba(10,10,10,0.88) 100%);
+}
+
+.text-zone {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 50%;
+  padding: 4vh 5vw 8vh 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.cover-zone {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 50%;
+  padding: 6vh 5vw 10vh 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--red-glow);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  text-shadow: 0 0 12px rgba(239,68,68,0.5);
+}
+
+.headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 4.2rem;
+  line-height: 1.05;
+  color: var(--off);
+  margin: 0 0 1.5rem 0;
+  text-shadow: 0 4px 24px rgba(220,38,38,0.45), 0 0 40px rgba(0,0,0,0.6);
+  opacity: 0;
+}
+.headline.size-md { font-size: 3.6rem; }
+.headline.size-sm { font-size: 3rem; }
+.headline.size-xs { font-size: 2.5rem; }
+
+.subhead {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #d4d4d4;
+  line-height: 1.4;
+  margin: 0 0 2rem 0;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+  opacity: 0;
+}
+
+.sub-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+.body-text {
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #e5e5e5;
+  margin: 0 0 1.5rem 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  opacity: 0;
+}
+
+.bullet-list { list-style: none; padding: 0; margin: 0 0 2rem 0; }
+.bullet-list li {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #ededed;
+  padding: 0.55rem 0 0.55rem 1.6rem;
+  position: relative;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  opacity: 0;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--red);
+  border-radius: 1px;
+  box-shadow: 0 0 10px rgba(220,38,38,0.7);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 0 0 1.5rem 0;
+}
+.compare-card {
+  border: 1px solid rgba(220,38,38,0.3);
+  background: rgba(10,10,10,0.55);
+  backdrop-filter: blur(6px);
+  padding: 1rem 1rem;
+  border-radius: 6px;
+  opacity: 0;
+}
+.compare-card .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red-glow);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.compare-card.is .tag { color: var(--cyan); }
+.compare-card p { font-size: 1rem; line-height: 1.4; color: #e5e5e5; margin: 0; }
+
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin: 0 0 1.5rem 0;
+}
+.col-card {
+  border: 1px solid rgba(220,38,38,0.35);
+  background: rgba(10,10,10,0.6);
+  backdrop-filter: blur(6px);
+  padding: 1.2rem;
+  border-radius: 8px;
+  opacity: 0;
+}
+.col-card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  color: var(--red-glow);
+  margin: 0 0 0.8rem 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.col-card.is h4 { color: var(--cyan); }
+.col-card ul { list-style: none; padding: 0; margin: 0; }
+.col-card ul li {
+  font-size: 1rem;
+  padding: 0.3rem 0 0.3rem 0.9rem;
+  position: relative;
+  color: #e0e0e0;
+  line-height: 1.4;
+}
+.col-card ul li::before {
+  content: '·';
+  color: var(--red);
+  position: absolute;
+  left: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.force-line {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #f0f0f0;
+  line-height: 1.4;
+  border-left: 3px solid var(--red);
+  padding-left: 1rem;
+  margin-top: 1rem;
+  opacity: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.closing-line {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--red-glow);
+  margin-top: 1rem;
+  text-shadow: 0 0 20px rgba(220,38,38,0.4);
+  opacity: 0;
+  letter-spacing: 0.01em;
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+  margin: 0.5rem 0 1.2rem 0;
+}
+.action-grid .item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  opacity: 0;
+}
+.action-grid .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--red-glow);
+  background: rgba(220,38,38,0.15);
+  border: 1px solid var(--red);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  min-width: 1.7rem;
+  text-align: center;
+}
+.action-grid .item p { margin: 0; color: #e5e5e5; }
+.action-grid .item p strong { color: var(--off); font-weight: 700; }
+
+.flow-numbered { list-style: none; padding: 0; margin: 0 0 1.5rem 0; counter-reset: step; }
+.flow-numbered li {
+  counter-increment: step;
+  padding: 0.5rem 0 0.5rem 2.5rem;
+  position: relative;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  color: #ededed;
+  opacity: 0;
+}
+.flow-numbered li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--red-glow);
+  background: rgba(220,38,38,0.15);
+  border: 1px solid var(--red);
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+}
+
+.example-block {
+  border-left: 3px solid var(--cyan);
+  padding: 0.7rem 1rem;
+  background: rgba(34,211,238,0.06);
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #e5e5e5;
+  opacity: 0;
+}
+.example-block .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* === ANCHOR SLIDE (slide 4, fullscreen, sem 50/50) === */
+.anchor-top {
+  position: absolute;
+  top: 6vh; left: 0; right: 0;
+  z-index: 2;
+  text-align: center;
+  padding: 0 6vw;
+}
+.anchor-top .eyebrow { justify-content: center; }
+.anchor-top .headline {
+  font-size: 3rem;
+  text-align: center;
+}
+.anchor-bottom {
+  position: absolute;
+  bottom: 5vh; left: 0; right: 0;
+  z-index: 2;
+  padding: 0 8vw;
+}
+.anchor-bottom .compare-grid { margin-bottom: 1.2rem; }
+.anchor-bottom .compare-card { text-align: center; }
+.anchor-bottom .compare-card .tag { text-align: center; }
+.anchor-bottom .force-line {
+  text-align: center;
+  border-left: none;
+  border-top: 3px solid var(--red);
+  padding-left: 0;
+  padding-top: 0.8rem;
+  max-width: 900px;
+  margin: 1rem auto 0 auto;
+}
+
+/* === CTA BUTTON (slide final) === */
+.cta-button {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--off);
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-deep) 100%);
+  padding: 1rem 2.2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 34px rgba(220,38,38,0.55);
+  opacity: 0;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+}
+.cta-micro {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-top: 1.1rem;
+  line-height: 1.5;
+  opacity: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+/* === FOOTER FIXO COM CONTADOR === */
+footer.site-footer {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: rgba(245,245,245,0.55);
+  text-transform: uppercase;
+  z-index: 50;
+  pointer-events: none;
+}
+footer.site-footer .right { color: var(--red-glow); font-weight: 700; }
+
+.custom-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(10,10,10,0.45);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(220,38,38,0.5);
+  color: var(--red-glow);
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(220,38,38,0.3);
+}
+.custom-nav:hover {
+  background: rgba(220,38,38,0.2);
+  box-shadow: 0 0 30px rgba(220,38,38,0.6);
+}
+.custom-nav.left { left: 28px; }
+.custom-nav.right { right: 28px; }
+
+.reveal .controls { display: none !important; }
+.reveal .progress { color: var(--red); height: 3px; }
+
+@media (max-width: 1280px) {
+  .headline { font-size: 3.4rem; }
+  .headline.size-md { font-size: 3rem; }
+  .headline.size-sm { font-size: 2.5rem; }
+  .body-text, .subhead { font-size: 1.15rem; }
+  .bullet-list li { font-size: 1.1rem; }
+  .anchor-top .headline { font-size: 2.4rem; }
+}
+@media (max-width: 768px) {
+  .text-zone, .cover-zone {
+    width: 100%;
+    padding: 3vh 6vw 11vh 6vw;
+    max-height: 100vh;
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+  .slide-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(10,10,10,0.85) 60%, rgba(10,10,10,0.95) 100%);
+  }
+  .custom-nav { display: none; }
+  .compare-grid, .two-col-grid, .action-grid { grid-template-columns: 1fr; }
+  .headline { font-size: 2.4rem; }
+  .headline.size-md { font-size: 2.1rem; }
+  .anchor-top .headline { font-size: 1.9rem; }
+  .anchor-bottom { padding: 0 5vw; }
+}
+</style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 01 / ABERTURA -->
+    <section data-slide="1">
+      <div class="slide-bg" style="background-image: url('assets/slide-01.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="cover-zone">
+        <span class="eyebrow anim-el">Workshop · Fora da Operação</span>
+        <h1 class="headline size-sm anim-el">Seu diagnóstico mostrou o tamanho da sua dependência operacional.</h1>
+        <p class="subhead anim-el">Este workshop mostra os 3 primeiros movimentos pra sair dela.</p>
+        <p class="sub-sub anim-el">Ao vivo via Zoom · 2h30 · Financeiro, Estratégico e Vendas</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 02 / MAPA -->
+    <section data-slide="2">
+      <div class="slide-bg" style="background-image: url('assets/slide-02.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Como funciona</span>
+        <h2 class="headline size-md anim-el">Uma noite, três blocos de 40 minutos</h2>
+        <ol class="flow-numbered">
+          <li class="anim-el">Abertura de 10 minutos, contexto e leitura do seu score IDO</li>
+          <li class="anim-el">Bloco 1, Financeiro, 40 minutos</li>
+          <li class="anim-el">Bloco 2, Estratégico, 40 minutos</li>
+          <li class="anim-el">Bloco 3, Vendas, 40 minutos</li>
+          <li class="anim-el">Perguntas ao vivo e o caminho de aplicação pro piloto</li>
+        </ol>
+        <p class="force-line anim-el">Você continua dentro da operação enquanto começa a sair dela.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 03 / CONCEITO-CHAVE -->
+    <section data-slide="3">
+      <div class="slide-bg" style="background-image: url('assets/slide-03.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">A promessa</span>
+        <h2 class="headline size-md anim-el">O primeiro passo de cada pilar, não a implantação inteira</h2>
+        <p class="body-text anim-el">Em 2h30, ao vivo, você aprende os 3 primeiros movimentos pra reduzir sua dependência operacional. Não é teoria de gestão.</p>
+        <div class="two-col-grid">
+          <div class="col-card anim-el">
+            <h4>Não é</h4>
+            <ul>
+              <li>Resolver sua dependência operacional em uma noite</li>
+              <li>Ninguém instala um sistema de gestão em 2h30</li>
+            </ul>
+          </div>
+          <div class="col-card is anim-el">
+            <h4>É</h4>
+            <ul>
+              <li>O mapa dos 3 primeiros movimentos</li>
+              <li>O primeiro passo prático de cada frente</li>
+            </ul>
+          </div>
+        </div>
+        <p class="closing-line anim-el">A implantação completa é outro trabalho. O caminho pra ela aparece no final.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 04 / SLIDE-ANCORA -->
+    <section data-slide="4">
+      <div class="slide-bg" style="background-image: url('assets/slide-04.png');"></div>
+      <div class="slide-overlay full"></div>
+      <div class="anchor-top">
+        <span class="eyebrow anim-el">Slide-âncora</span>
+        <h2 class="headline anim-el">Um gargalo, três pilares, três primeiros movimentos</h2>
+      </div>
+      <div class="anchor-bottom">
+        <div class="compare-grid">
+          <div class="compare-card anim-chip">
+            <span class="tag">Financeiro</span>
+            <p>Tirar os números da sua cabeça</p>
+          </div>
+          <div class="compare-card is anim-chip">
+            <span class="tag">Estratégico</span>
+            <p>Trocar urgência por prioridade</p>
+          </div>
+          <div class="compare-card anim-chip">
+            <span class="tag">Vendas</span>
+            <p>Tirar a venda das suas costas</p>
+          </div>
+        </div>
+        <p class="force-line anim-el">Você não sai da operação resolvendo tudo de uma vez. Sai dando o primeiro movimento certo em cada pilar.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 05 / MOVIMENTO 1 FINANCEIRO -->
+    <section data-slide="5">
+      <div class="slide-bg" style="background-image: url('assets/slide-05.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Movimento 1 · Financeiro</span>
+        <h2 class="headline size-md anim-el">Tirar os números da sua cabeça</h2>
+        <p class="body-text anim-el">Hoje o caixa da empresa e o seu bolso são a mesma coisa. Enquanto o número mora só na sua cabeça, você é o controle financeiro.</p>
+        <ul class="bullet-list">
+          <li class="anim-el">Por que separar PF e PJ é o movimento zero</li>
+          <li class="anim-el">O único número que você passa a olhar primeiro toda semana</li>
+          <li class="anim-el">Como montar a primeira versão do seu controle financeiro</li>
+        </ul>
+        <p class="force-line anim-el">Você sai com o primeiro passo financeiro do seu negócio definido no papel.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 06 / MOVIMENTO 2 ESTRATEGICO -->
+    <section data-slide="6">
+      <div class="slide-bg" style="background-image: url('assets/slide-06.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Movimento 2 · Estratégico</span>
+        <h2 class="headline size-md anim-el">Trocar urgência por prioridade</h2>
+        <p class="body-text anim-el">Sua agenda é sequestrada todo dia pelo operacional porque, sem uma prioridade definida, tudo vira urgente.</p>
+        <ul class="bullet-list">
+          <li class="anim-el">A prioridade única do próximo trimestre, uma, não cinco</li>
+          <li class="anim-el">O filtro que separa o que exige o dono do que não exige</li>
+          <li class="anim-el">Por que "não ter tempo pra planejar" garante que você nunca vai ter</li>
+        </ul>
+        <p class="force-line anim-el">Você sai com a sua prioridade escrita e o primeiro não que vai dar na segunda-feira.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 07 / MOVIMENTO 3 VENDAS -->
+    <section data-slide="7">
+      <div class="slide-bg" style="background-image: url('assets/slide-07.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Movimento 3 · Vendas</span>
+        <h2 class="headline size-md anim-el">Tirar a venda das suas costas</h2>
+        <p class="body-text anim-el">Se a receita cai quando você tira uma semana de folga, sua empresa não tem processo de vendas. Tem você vendendo.</p>
+        <ul class="bullet-list">
+          <li class="anim-el">Onde exatamente você é o gargalo do seu próprio funil</li>
+          <li class="anim-el">O primeiro pedaço da venda que sai da sua mão sem derrubar a receita</li>
+          <li class="anim-el">O que precisa existir antes de contratar vendedor ou ferramenta</li>
+        </ul>
+        <p class="force-line anim-el">Você sai com o mapa do seu funil e o primeiro pedaço que vai delegar.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 08 / O QUE VOCE LEVA EMBORA -->
+    <section data-slide="8">
+      <div class="slide-bg" style="background-image: url('assets/slide-08.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Ao vivo, com você</span>
+        <h2 class="headline size-md anim-el">O que você leva embora</h2>
+        <div class="action-grid">
+          <div class="item anim-el"><span class="num">01</span><p><strong>Plano de Primeiro Movimento</strong>, uma página por pilar</p></div>
+          <div class="item anim-el"><span class="num">02</span><p>Leitura comentada do seu score IDO</p></div>
+          <div class="item anim-el"><span class="num">03</span><p>Bloco de perguntas ao vivo sobre o seu caso</p></div>
+          <div class="item anim-el"><span class="num">04</span><p>Gravação disponível por 7 dias</p></div>
+          <div class="item anim-el"><span class="num">05</span><p>Crédito integral no Piloto 90 Dias em até 7 dias</p></div>
+        </div>
+        <p class="closing-line anim-el">Você sai com decisão tomada, não só com conteúdo.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 09 / PRA QUEM E -->
+    <section data-slide="9">
+      <div class="slide-bg" style="background-image: url('assets/slide-09.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Antes de entrar</span>
+        <h2 class="headline size-md anim-el">Pra quem é, e pra quem não é</h2>
+        <div class="two-col-grid">
+          <div class="col-card is anim-el">
+            <h4>É pra você se</h4>
+            <ul>
+              <li>Sua empresa fatura, mas depende da sua presença</li>
+              <li>O score do seu diagnóstico doeu</li>
+              <li>Você quer o primeiro passo prático, não motivacional</li>
+            </ul>
+          </div>
+          <div class="col-card anim-el">
+            <h4>Não é pra você se</h4>
+            <ul>
+              <li>Você ainda não tem empresa operando</li>
+              <li>Você procura atalho sem trabalho</li>
+              <li>Você quer que resolvam tudo sem você tocar</li>
+            </ul>
+          </div>
+        </div>
+        <p class="force-line anim-el">Nem o programa de R$15 mil funciona sem você.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 10 / A OFERTA -->
+    <section data-slide="10">
+      <div class="slide-bg" style="background-image: url('assets/slide-10.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">A oferta</span>
+        <h2 class="headline size-md anim-el">R$197 na primeira turma</h2>
+        <ul class="bullet-list">
+          <li class="anim-el">Ao vivo, online, Zoom, encontro único de 2h30</li>
+          <li class="anim-el">Preço de estreia enquanto o formato é validado, depois volta pra R$297</li>
+          <li class="anim-el">Garantia até o fim do dia seguinte, sem formulário</li>
+          <li class="anim-el">Turma limitada, porque o bloco de perguntas é respondido caso a caso</li>
+        </ul>
+        <p class="closing-line anim-el">R$197 viram desconto integral no Piloto 90 Dias se você aplicar em até 7 dias.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 11 / QUEM CONDUZ -->
+    <section data-slide="11">
+      <div class="slide-bg" style="background-image: url('assets/slide-11.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Quem conduz</span>
+        <h2 class="headline size-md anim-el">Rogério Trevisan, o Bona</h2>
+        <p class="body-text anim-el">Empresário, não professor de teoria. Opera ao mesmo tempo indústria aeroespacial, fábrica de móveis, contabilidade e negócios digitais.</p>
+        <p class="force-line anim-el">Só consegue isso porque nenhuma dessas empresas depende de ele estar no balcão.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 12 / CTA FINAL -->
+    <section data-slide="12">
+      <div class="slide-bg" style="background-image: url('assets/slide-12.png');"></div>
+      <div class="slide-overlay"></div>
+      <div class="text-zone">
+        <span class="eyebrow anim-el">Workshop Fora da Operação</span>
+        <h2 class="headline size-md anim-el">Qual é o seu primeiro movimento?</h2>
+        <p class="body-text anim-el">Você já sabe o seu score. Já sabe que a empresa depende de você mais do que deveria. A pergunta que sobra é qual é o primeiro movimento.</p>
+        <span class="cta-button anim-el">Quero minha vaga no Workshop</span>
+        <p class="cta-micro anim-el">R$197 na primeira turma. Ao vivo, 2h30, com gravação por 7 dias. Vira crédito integral no Piloto 90 Dias se você aplicar em até 7 dias.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<button class="custom-nav left" id="navPrev" aria-label="Anterior">‹</button>
+<button class="custom-nav right" id="navNext" aria-label="Proximo">›</button>
+
+<footer class="site-footer">
+  <span class="left">Workshop Fora da Operação · Financeiro, Estratégico, Vendas</span>
+  <span class="right" id="slide-counter">01 / 12</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+const deck = new Reveal({
+  hash: true,
+  controls: false,
+  progress: true,
+  center: false,
+  embedded: false,
+  width: '100%',
+  height: '100%',
+  margin: 0,
+  minScale: 1,
+  maxScale: 1,
+  transition: 'fade',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  keyboard: {
+    32: 'next',
+    70: () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  }
+});
+
+deck.initialize().then(() => {
+  animateSlide(deck.getCurrentSlide());
+  updateCounter();
+});
+
+deck.on('slidechanged', (event) => {
+  animateSlide(event.currentSlide);
+  updateCounter();
+});
+
+document.getElementById('navPrev').addEventListener('click', () => deck.prev());
+document.getElementById('navNext').addEventListener('click', () => deck.next());
+
+function updateCounter() {
+  const i = deck.getIndices();
+  const total = deck.getTotalSlides();
+  const cur = String(i.h + 1).padStart(2, '0');
+  const tot = String(total).padStart(2, '0');
+  const el = document.getElementById('slide-counter');
+  if (el) el.textContent = `${cur} / ${tot}`;
+}
+
+function animateSlide(slide) {
+  if (!slide) return;
+
+  const bg = slide.querySelector('.slide-bg');
+  if (bg) {
+    gsap.fromTo(bg,
+      { opacity: 0, scale: 1.0 },
+      { opacity: 1, scale: 1.025, duration: 8, ease: 'power1.out' }
+    );
+    gsap.fromTo(bg,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.9, ease: 'power2.out' }
+    );
+  }
+
+  const els = slide.querySelectorAll('.anim-el');
+  if (els.length) {
+    gsap.fromTo(els,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: 0.13,
+        delay: 0.25
+      }
+    );
+  }
+
+  const chips = slide.querySelectorAll('.anim-chip');
+  if (chips.length) {
+    gsap.fromTo(chips,
+      { opacity: 0, y: 20, scale: 0.92 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        ease: 'back.out(1.4)',
+        stagger: 0.12,
+        delay: 0.5
+      }
+    );
+  }
+}
+</script>
+
+</body>
+</html>
